@@ -12,7 +12,7 @@ router.get("/", (request, response) => {
 });
 
 //Post route receiving the form infos from / route
-router.post("/auth", (request, response) => {
+router.post("/validate-auth", (request, response) => {
     //Declaring variables with the infos inserted in the form
     const username = request.body.username;
     const password = request.body.password;
@@ -33,7 +33,7 @@ router.post("/auth", (request, response) => {
             if(results.length > 0) {
                 request.session.loggedin = true;
                 request.session.username = username;
-                response.redirect("/home");
+                response.redirect("/user/home");
             } else {
                 //If return 0 results of the database, show pass or user incorrect
                 response.send("Incorrect Username and/or Password!");
@@ -46,18 +46,6 @@ router.post("/auth", (request, response) => {
         response.send("Please enter Username and Password!");
         response.end();
     }
-});
-
-//Home route
-router.get("/home", (request, response) => {
-    //If loggedin is set with true, open the home page
-    if(request.session.loggedin) {
-        response.send(`Welcome back, ${request.session.username}!`);
-    } else {
-        //If loggedin is set to false, send a message to make login
-        response.send("Please login to view this page!");
-    }
-    response.end();
 });
 
 module.exports = router;
