@@ -5,6 +5,7 @@ const path = require("path");
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+const newUserRoutes = require("./routes/insertUser");
 
 //Setting PORT
 const PORT = process.env.PORT || 3000;
@@ -17,11 +18,13 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "static")));
 
-//Routes for authentication or create
+//Routes for authentication
 app.use("/auth", authRoutes);
+
+app.use("/new-user", newUserRoutes);
 
 //Routes for user inside the system
 app.use("/user", userRoutes);
