@@ -1,3 +1,4 @@
+//Importing packages
 const express = require("express");
 const path = require("path");
 const crypto = require("crypto");
@@ -9,7 +10,7 @@ const router = express.Router();
 
 //Login form route
 router.get("/", (request, response) => {
-    response.sendFile(path.join(__dirname, "../login.html"));
+    response.render(path.join(__dirname, "../views/pages/login"));
 });
 
 //Post route receiving the form infos from / route
@@ -18,8 +19,12 @@ router.post("/validate-auth", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
 
+    console.log(typeof(password));
+    
     //Turn the password into a hash to compare with the hash of the username in the database
     const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
+
+    console.log(username, typeof(hashedPassword));
 
     //If username and passwor is not empty, search in the database
     if(username && hashedPassword){

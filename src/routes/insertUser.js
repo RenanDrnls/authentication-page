@@ -1,10 +1,13 @@
+//Importing packages
 const express = require("express");
 const crypto = require("crypto");
 
+//Connection with the database
 const connection = require("../database/db");
 
 const router = express.Router();
 
+//Route that will receive the form to insert the data of a new user
 router.get("/add-user", (request, response) => {
     response.send("Add user screen");
 });
@@ -19,6 +22,7 @@ router.post("/insert-user", (request, response) => {
     const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
 
     if(username && hashedPassword && email){
+
         //Select to look if the informed username exists in the database
         connection.query("SELECT * FROM accounts WHERE username = ?",
         [username],
@@ -47,11 +51,8 @@ router.post("/insert-user", (request, response) => {
                         connection.query("INSERT INTO accounts(username, password, email) VALUES (?, ?, ?)",
                         [username, hashedPassword, email],
                         (error, result, fields) => {
-                            if(error){
-                                throw error;
-                            } else {
-                                response.send(`Usuário inserido no banco de dados com o id ${result.insertId}`);
-                            };
+                            if(error) throw error;
+                            response.send(`Usuário inserido no banco de dados com o id ${result.insertId}`);
                         });
                     };
                 });
