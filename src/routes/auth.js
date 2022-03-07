@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const crypto = require("crypto");
 
 //Call the module to connection to the database
 const connection = require("../database/db");
@@ -17,11 +18,14 @@ router.post("/validate-auth", (request, response) => {
     const username = request.body.username;
     const password = request.body.password;
 
+    //Turn the password into a hash to compare with the hash of the username in the database
+    const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
+
     //If username and passwor is not empty, search in the database
-    if(username && password){
+    if(username && hashedPassword){
         //Query to search with bind fields
         connection.query("SELECT * FROM accounts WHERE username = ? AND password = ?",
-        [username, password],
+        [username, hashedPassword],
         (error, results, fields) => {
             
             //If error is true(have an error), throw the error

@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+const crypto = require("crypto");
 
 const connection = require("../database/db");
 
@@ -10,11 +10,15 @@ router.get("/add-user", (request, response) => {
 });
 
 router.post("/insert-user", (request, response) => {
+    //Declaring variables with the infos inserted in the form
     const username = request.body.username;
     const password = request.body.password;
     const email = request.body.email;
 
-    if(username && password && email){
+    //Turn the password into a hash to insert in the database
+    const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
+
+    if(username && hashedPassword && email){
         //Select to look if the informed username exists in the database
         connection.query("SELECT * FROM accounts WHERE username = ?",
         [username],
@@ -41,7 +45,7 @@ router.post("/insert-user", (request, response) => {
                         //If else not have the username and the email in the database, make the insert of the datas informed by the user
                     } else {
                         connection.query("INSERT INTO accounts(username, password, email) VALUES (?, ?, ?)",
-                        [username, password, email],
+                        [username, hashedPassword, email],
                         (error, result, fields) => {
                             if(error){
                                 throw error;
