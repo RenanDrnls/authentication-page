@@ -7,6 +7,7 @@ const path = require("path");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const newUserRoutes = require("./routes/insertUser");
+const logoutRoutes = require("./routes/logout");
 
 //Setting PORT
 const PORT = process.env.PORT || 3000;
@@ -33,6 +34,8 @@ app.use("/new-user", newUserRoutes);
 
 //Routes for user inside the system
 app.use("/user", userRoutes);
+
+app.use("/session", logoutRoutes);
 
 //Redirect user to the initial page if not pass a path
 app.get("/", (req, res) => {

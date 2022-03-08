@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 const router = express.Router();
 
@@ -6,7 +7,8 @@ const router = express.Router();
 router.get("/home", (request, response) => {
     //If loggedin is set with true, open the home page
     if(request.session.loggedin) {
-        response.send(`Welcome back, ${request.session.username}!`);
+        const username = request.session.username;
+        response.render(path.join(__dirname, "../views/pages/home"), {user : username});
     } else {
         //If loggedin is set to false, send a message to make login
         response.send("Please login to view this page!");
