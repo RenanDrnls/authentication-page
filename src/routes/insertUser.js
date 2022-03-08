@@ -1,5 +1,6 @@
 //Importing packages
 const express = require("express");
+const path = require("path");
 const crypto = require("crypto");
 
 //Connection with the database
@@ -9,7 +10,7 @@ const router = express.Router();
 
 //Route that will receive the form to insert the data of a new user
 router.get("/add-user", (request, response) => {
-    response.send("Add user screen");
+    response.render(path.join(__dirname, "../views/pages/new-user"));
 });
 
 router.post("/insert-user", (request, response) => {
@@ -52,7 +53,8 @@ router.post("/insert-user", (request, response) => {
                         [username, hashedPassword, email],
                         (error, result, fields) => {
                             if(error) throw error;
-                            response.send(`Usuário inserido no banco de dados com o id ${result.insertId}`);
+                            
+                            response.redirect("/auth");
                         });
                     };
                 });
