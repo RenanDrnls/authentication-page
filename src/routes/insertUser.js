@@ -47,13 +47,13 @@ router.post("/insert-user", (request, response) => {
                     if(result.length > 0){
                         response.send(`O e-mail ${email} já possui cadastro, por favor, escolha outro.`)
 
-                        //If else not have the username and the email in the database, make the insert of the datas informed by the user
+                    //If else not have the username and the email in the database, make the insert of the datas informed by the user
                     } else {
                         connection.query("INSERT INTO accounts(username, password, email) VALUES (?, ?, ?)",
                         [username, hashedPassword, email],
                         (error, result, fields) => {
                             if(error) throw error;
-                            
+
                             response.redirect("/auth");
                         });
                     };
