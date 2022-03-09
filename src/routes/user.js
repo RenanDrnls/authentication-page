@@ -8,7 +8,7 @@ router.get("/home", (request, response) => {
     //If loggedin is set with true, open the home page
     if(request.session.loggedin) {
         const username = request.session.username;
-        response.render(path.join(__dirname, "../views/pages/home"), {user : username});
+        response.render(path.join(__dirname, "../views/pages/user/home"), {user : username});
     } else {
         //If loggedin is set to false, send a message to make login
         response.send("Please login to view this page!");

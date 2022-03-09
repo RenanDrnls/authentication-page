@@ -5,6 +5,7 @@ const path = require("path");
 
 //Importing modules of the router in the Routes directory
 const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const newUserRoutes = require("./routes/insertUser");
 const logoutRoutes = require("./routes/logout");
@@ -31,6 +32,9 @@ app.use("/auth", authRoutes);
 
 //Route to create and insert a new user
 app.use("/new-user", newUserRoutes);
+
+//Routes of admin access
+app.use("/admin", adminRoutes);
 
 //Routes for user inside the system
 app.use("/user", userRoutes);

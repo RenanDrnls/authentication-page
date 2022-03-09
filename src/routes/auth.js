@@ -18,13 +18,9 @@ router.post("/validate-auth", (request, response) => {
     //Declaring variables with the infos inserted in the form
     const username = request.body.username;
     const password = request.body.password;
-
-    console.log(typeof(password));
     
     //Turn the password into a hash to compare with the hash of the username in the database
     const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
-
-    console.log(username, typeof(hashedPassword));
 
     //If username and passwor is not empty, search in the database
     if(username && hashedPassword){
@@ -35,18 +31,27 @@ router.post("/validate-auth", (request, response) => {
             
             //If error is true(have an error), throw the error
             if(error) throw error;
-
+            console.log(results[0].admin);
             //If have one or more results, set the session.loggedin to true,
             //set the session.username to the username of the user,
             //Redirect to the home page
             if(results.length > 0) {
                 request.session.loggedin = true;
                 request.session.username = username;
-                response.redirect("/user/home");
+
+                //Validate if is Admin
+                switch(results[0].admin){
+                    case 1:
+                        response.redirect("/admin/home");
+                        break;
+                    case 0:
+                        response.redirect("/user/home");
+                        break;
+                };
             } else {
                 //If return 0 results of the database, show pass or user incorrect
                 response.send("Incorrect Username and/or Password!");
-            }
+            };
             //End of the response
             response.end();
         });
