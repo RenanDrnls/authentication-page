@@ -72,3 +72,12 @@ button {
     width: 100%;
     text-align: center;
 }
+
+.container-all-users{
+    color: #FFFFFF;
+    width: 800px;
+}
+
+h4{
+    margin: 0;
+}

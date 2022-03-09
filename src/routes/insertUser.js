@@ -14,7 +14,7 @@ router.get("/add-user", (request, response) => {
 });
 
 router.post("/insert-user", (request, response) => {
-    //Declaring variables with the infos inserted in the form
+    //Variables with the infos inserted in the form
     const username = request.body.username;
     const password = request.body.password;
     const email = request.body.email;

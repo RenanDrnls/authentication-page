@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <%- include("../../partials/head") %>
+    <title>Home Admin</title>
+</head>
+<body style="width: 100%; overflow-x: hidden; display: flex; flex-direction: column; align-items: center;">
+    <div>
+        <h1 style="text-align: center; font-size: 30px; color: #FFFFFF;">List of Users!</i></h1>
+    </div>
+    <div class="container-all-users">
+        <% for(user of users){ %>
+            <h4>ID: <%= user.id %></h4>
+            <h4>Nome de usuário: <%= user.username %></h4>
+            <h4>Email: <%= user.email %></h4>
+            <hr>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -2,6 +2,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 //Importing modules of the router in the Routes directory
 const authRoutes = require("./routes/auth");
@@ -17,14 +18,17 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 //Settings to the app instance
+const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
     secret: "secret",
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay }
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "static")));
+app.use(cookieParser());
 app.set("view engine", "ejs");
 
 //Routes for authentication
