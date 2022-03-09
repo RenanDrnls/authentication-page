@@ -11,7 +11,7 @@ router.get("/home", (request, response) => {
         response.render(path.join(__dirname, "../views/pages/user/home"), {user : username});
     } else {
         //If loggedin is set to false, send a message to make login
-        response.send("Please login to view this page!");
+        response.send("Please, make login to view this page!");
     }
     response.end();
 });

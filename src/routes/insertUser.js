@@ -33,7 +33,7 @@ router.post("/insert-user", (request, response) => {
 
             //If have one or more results of the username, operation is aborted and the user receive a notice
             if(result.length > 0){
-                response.send(`Nome de usuário ${username} já cadastrado, por favor, escolha outro.`)
+                response.send(`Username ${username} is already in use, please, change another.`);
 
                 //Else not have the username in the database, select to view if have the email already inserted in the database in other account
             } else {
@@ -45,7 +45,7 @@ router.post("/insert-user", (request, response) => {
 
                     ////If have one or more results of the username, operation is aborted and the user receive a notice
                     if(result.length > 0){
-                        response.send(`O e-mail ${email} já possui cadastro, por favor, escolha outro.`)
+                        response.send(`E-mail ${email} is already in use, please, change another.`);
 
                     //If else not have the username and the email in the database, make the insert of the datas informed by the user
                     } else {
