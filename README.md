@@ -6,14 +6,14 @@ Ainda incompleto, porém com mudanças diárias.
 Módulos NodeJS utilizados:
 - Express => Para controle de rotas.
 - Express-session => Para controle de sessões de usuários.
-- Crypto => Para hashing de senha de usuários.
+- Crypto => Para hashing de senha de usuários, e geração de ID de seção.
 - Cookie-parser => Utilizado para analizar o valor do Cookie e converter para um formato JSON.
 - MySQL => Para conexão com Banco de Dados MySQL e execução das querys.
 - EJS => Template de JS com HTML.
 
 * Em /src/database coloquei um script para criação do Banco de Dados no MySQL com valores iniciais de usuário padrão e usuário admin para teste.
 
-* Screenschots:
+* Screenshots:
 
 - Form Login "/auth/":
 
