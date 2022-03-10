@@ -12,24 +12,22 @@ router.get("/home", (request, response) => {
 });
 
 router.get("/users", (request, response) => {
-    
-    var adminUsers = [];
 
     connection.query("SELECT * FROM accounts WHERE admin = 1",
     (error, results, fields) => {
+        const adminUsers = [];
         results.forEach(user => {
             adminUsers.push(user.username);
-            console.log(adminUsers);
         });
+
+        if(request.session.loggedin && adminUsers.indexOf(request.session.username) !== -1){
+            connection.query("SELECT * FROM accounts", (error, results, fields) => {
+                response.render(path.join(__dirname, "../views/pages/admin/users-list"), { users: results });
+            });
+        } else {
+            response.send("Please, make login with an admin account to access this page")
+        };
     });
-    
-    if(request.session.loggedin && request.session.username == "admRenas"){
-        connection.query("SELECT * FROM accounts", (error, results, fields) => {
-            response.render(path.join(__dirname, "../views/pages/admin/users-list"), { users: results });
-        });
-    } else {
-        response.send("Please, make login with an admin account to access this page")
-    };
 });
 
 module.exports = router;
