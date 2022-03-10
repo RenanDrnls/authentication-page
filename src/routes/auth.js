@@ -18,7 +18,7 @@ router.post("/validate-auth", (request, response) => {
     //Declaring variables with the infos inserted in the form
     const username = request.body.username;
     const password = request.body.password;
-    
+
     //Turn the password into a hash to compare with the hash of the username in the database
     const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
 
