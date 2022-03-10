@@ -18,7 +18,7 @@ Módulos NodeJS utilizados:
 - Form Login "/auth/":
 ![image](https://user-images.githubusercontent.com/43563007/157667098-1ae729a3-c5a5-472b-9829-0e77ab1fa54c.png)
 
-- Form Criação de usuário "/new-user/add-user"
+- Form Criação de usuário "/new-user/add-user":
 ![image](https://user-images.githubusercontent.com/43563007/157667231-3335085f-308b-4c44-aed4-323cd0e1b71c.png)
 
 - Tela inicial usuário padrão "/user/home":
