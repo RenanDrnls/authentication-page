@@ -16,15 +16,18 @@ Módulos NodeJS utilizados:
 * Screenschots:
 
 - Form Login "/auth/":
+
 ![image](https://user-images.githubusercontent.com/43563007/157667098-1ae729a3-c5a5-472b-9829-0e77ab1fa54c.png)
-
+/* ---------------------------------------------------------------- */
 - Form Criação de usuário "/new-user/add-user":
-![image](https://user-images.githubusercontent.com/43563007/157667231-3335085f-308b-4c44-aed4-323cd0e1b71c.png)
 
+![image](https://user-images.githubusercontent.com/43563007/157667231-3335085f-308b-4c44-aed4-323cd0e1b71c.png)
+/* ---------------------------------------------------------------- */
 - Tela inicial usuário padrão "/user/home":
 ![image](https://user-images.githubusercontent.com/43563007/157667363-004200b0-a6ba-4f8d-8be5-222ab7e85ae6.png)
-
+/* ---------------------------------------------------------------- */
 - Tela inicial usuário Admin "/admin/home":
+
 ![image](https://user-images.githubusercontent.com/43563007/157667452-3b467d23-f630-4f1f-97c2-dd351860423b.png)
 
 
