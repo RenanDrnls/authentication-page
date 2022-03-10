@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Home route
 router.get("/home", (request, response) => {
-    //If loggedin is set with true, open the home page
+    //If loggedin of session is set with true, open the home page
     if(request.session.loggedin) {
         const username = request.session.username;
         console.log(request.session);
