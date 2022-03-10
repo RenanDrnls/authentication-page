@@ -31,7 +31,7 @@ router.post("/validate-auth", (request, response) => {
             
             //If error is true(have an error), throw the error
             if(error) throw error;
-            console.log(results[0].admin);
+
             //If have one or more results, set the session.loggedin to true,
             //set the session.username to the username of the user,
             //Redirect to the home page
