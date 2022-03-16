@@ -22,7 +22,7 @@ router.post("/validate-auth", (request, response) => {
     //Turn the password into a hash to compare with the hash of the username in the database
     const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
 
-    //If username and passwor is not empty, search in the database
+    //If username and password is not empty, search in the database
     if(username && hashedPassword){
         //Query to search with bind fields
         connection.query("SELECT * FROM accounts WHERE username = ? AND password = ?",

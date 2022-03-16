@@ -1,5 +1,7 @@
 //Importing packages
-const express = require("express");
+import express from "express";
+import session from "express-session";
+
 const session = require("express-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
