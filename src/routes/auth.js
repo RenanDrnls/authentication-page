@@ -23,7 +23,7 @@ router.get("/", (request, response) => {
                 response.redirect("/admin/home")
                 //Else not exists, is a user, so redirect to /home
             } else {
-                response.redirect("/home")
+                response.redirect("/user/home")
             }
         })
     //Else not have session, make login
