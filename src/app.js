@@ -1,7 +1,5 @@
 //Importing packages
-import express from "express";
-import session from "express-session";
-
+const express = require("express");
 const session = require("express-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -31,8 +29,11 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Delivering the static files to the browser
 app.use(express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
+//Setting view engine to the express
 app.set("view engine", "ejs");
 
 //Routes for authentication
@@ -47,6 +48,7 @@ app.use("/admin", adminRoutes);
 //Routes for user inside the system
 app.use("/user", userRoutes);
 
+//Logout the user and destroy the session
 app.use("/session", logoutRoutes);
 
 //Redirect user to the initial page if not pass a path

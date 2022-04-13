@@ -10,7 +10,26 @@ const router = express.Router();
 
 //Login form route
 router.get("/", (request, response) => {
-    response.render(path.join(__dirname, "../views/pages/login"));
+    //Se possuir sessão de login, valida se é de usuário ou admin
+    if(request.session.loggedin){
+        connection.query("SELECT * FROM accounts WHERE admin = 1",
+        (error, results, fields) => {
+            const adminUsers = [];
+            results.forEach(user => {
+                adminUsers.push(user.username);
+            });
+            //If exists in admin array extracted from DB, redirect to /admin/home
+            if(request.session.username.indexOf(adminUsers)){
+                response.redirect("/admin/home")
+                //Else not exists, is a user, so redirect to /home
+            } else {
+                response.redirect("/home")
+            }
+        })
+    //Else not have session, make login
+    } else {
+        response.render(path.join(__dirname, "../views/pages/login"));
+    }
 });
 
 //Post route receiving the form infos from / route
