@@ -49,8 +49,8 @@ router.post("/insert-user", (request, response) => {
 
                     //If else not have the username and the email in the database, make the insert of the datas informed by the user
                     } else {
-                        connection.query("INSERT INTO accounts(username, password, email) VALUES (?, ?, ?)",
-                        [username, hashedPassword, email],
+                        connection.query("INSERT INTO accounts(username, password, email, admin) VALUES (?, ?, ?, ?)",
+                        [username, hashedPassword, email, 0],
                         (error, result, fields) => {
                             if(error) throw error;
 

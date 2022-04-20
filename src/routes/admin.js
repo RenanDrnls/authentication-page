@@ -29,7 +29,7 @@ router.get("/users", (request, response) => {
         });
 
         //If the navigator have a session, and the username of the session is an admin inserted in the previous array, render the users list
-        if(request.session.loggedin && adminUsers.indexOf(request.session.username) !== -1){
+        if(request.session.loggedin && request.session.username.indexOf(adminUsers) !== -1){
             connection.query("SELECT * FROM accounts", (error, results, fields) => {
                 response.render(path.join(__dirname, "../views/pages/admin/users-list"), { users: results });
             });

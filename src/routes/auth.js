@@ -18,8 +18,9 @@ router.get("/", (request, response) => {
             results.forEach(user => {
                 adminUsers.push(user.username);
             });
+            console.log(adminUsers);
             //If exists in admin array extracted from DB, redirect to /admin/home
-            if(request.session.username.indexOf(adminUsers)){
+            if(request.session.username.indexOf(adminUsers) !== -1){
                 response.redirect("/admin/home")
                 //Else not exists, is a user, so redirect to /home
             } else {
